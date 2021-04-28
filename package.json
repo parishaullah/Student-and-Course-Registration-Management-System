@@ -16,5 +16,8 @@
   "bugs": {
     "url": "https://github.com/parishaullah/Student-and-Course-Registration-Management-System/issues"
   },
-  "homepage": "https://github.com/parishaullah/Student-and-Course-Registration-Management-System#readme"
+  "homepage": "https://github.com/parishaullah/Student-and-Course-Registration-Management-System#readme",
+  "dependencies": {
+    "express": "^4.17.1"
+  }
 }
