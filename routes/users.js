@@ -1,19 +1,20 @@
 const express = require("express");
 const router = express.Router();
-const db = require('../db'); 
+const db = require('../config/database'); 
+const Users=require('../models/users')
 const bcrypt = require("bcrypt");
 
 //Get all users
 router.get("/",async(req,res)=>{
     
     try{
-        const result= await db.query("SELECT * FROM users");
-        //console.log(result);
-        res.status(200).json(
-            result.rows
-           );
+        const result= await Users.findAll();
+        console.log("here");
+        console.log(result);
+        console.log("here");
+        res.status(200).send(result);
     } catch(err){
-       // console.log(err);
+       console.log(err);
     }
 });
 
@@ -24,7 +25,7 @@ router.get("/:id",async(req,res)=>{
         const result= await db.query('SELECT * FROM users WHERE user_id = $1',[req.params.id]);
        // console.log(result);
         res.status(200).json(
-            result.rows[0]
+            result
            );
     } catch(err){
        // console.log(err);
