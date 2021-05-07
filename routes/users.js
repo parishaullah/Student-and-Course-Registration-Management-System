@@ -20,42 +20,37 @@ router.get("/",async(req,res)=>{
 router.get("/:id",async(req,res)=>{
     
     try{
+
+        let user= await Users.findAll({
+            where: {
+                user_id: req.params.id
+              }
+            })
+        if (user==+null)  return res.status(400).send("User does not exist!");
         
         const result= await Users.findAll({
             where: {
               user_id: req.params.id
             }
           });;
-       // console.log(result);
         res.status(200).json(
             result
            );
     } catch(err){
-       // console.log(err);
+        console.log(err);
     }
 });
 
 //Create user
 router.post("/",async(req,res)=>{
-    //console.log(req.body);
     try{
-        let user= await Users.findAll({
-            where: {
-                email: req.body.email
-              }
-            })
-        if (user)  return res.status(400).send("User already registered");
-       
-       
-        else{
+        
         const salt = await bcrypt.genSalt(10);
         pass = await bcrypt.hash(req.body.password, salt);
         const user = await Users.create({ email: req.body.email,password: pass, user_name: req.body.user_name, user_status: req.body.user_status});
     
-        
         console.log(user);
 
-        
         const result= await Users.findAll({
             where: {
               email: req.body.email
@@ -64,7 +59,7 @@ router.post("/",async(req,res)=>{
         
         res.status(200).json(
             result
-           );}
+           );
     } catch(err){
         console.log(err);
     }
@@ -72,9 +67,16 @@ router.post("/",async(req,res)=>{
 
 //Update User
 router.put("/:id",async(req,res)=>{
-    // console.log(req.body);
      
      try{
+
+        let user= await Users.findAll({
+            where: {
+                user_id: req.params.id
+              }
+            })
+        if (user==+null)  return res.status(400).send("User does not exist!");
+
         const salt = await bcrypt.genSalt(10);
         pass = await bcrypt.hash(req.body.password, salt);
         const result= await Users.update({ email: req.body.email, password: pass, user_name: req.body.user_name, user_status: req.body.user_status }, {
@@ -82,8 +84,6 @@ router.put("/:id",async(req,res)=>{
                 user_id: req.params.id
             }
           });
-         //const result=await db.query('UPDATE users set email= $1 , password=$2 , user_name=$3 , user_status=$4 WHERE user_id=$5 returning *', [req.body.email,pass,req.body.user_name,req.body.user_status,req.params.id]);
-        // console.log(result);
         const updatedResult= await Users.findAll({
             where: {
                 user_id: req.params.id
@@ -94,8 +94,33 @@ router.put("/:id",async(req,res)=>{
             updatedResult
            );
      } catch(err){
-        // console.log(err);
+         console.log(err);
      }
  });
+
+ //Delete user
+router.delete("/:id",async(req,res)=>{
+    
+    try{
+
+        let user= await Users.findAll({
+            where: {
+                user_id: req.params.id
+              }
+            })
+        if (user==+null)  return res.status(400).send("User does not exist!");
+
+        await Users.destroy({
+            where: {
+                user_id: req.params.id
+            }
+          });
+        
+        
+        res.status(200).send("Successfully Deleted");
+    } catch(err){
+        console.log(err);
+    }
+});
 
 module.exports = router;
