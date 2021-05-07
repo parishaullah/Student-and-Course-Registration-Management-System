@@ -9,9 +9,7 @@ router.get("/",async(req,res)=>{
     
     try{
         const result= await Users.findAll();
-        console.log("here");
         console.log(result);
-        console.log("here");
         res.status(200).send(result);
     } catch(err){
        console.log(err);
@@ -22,7 +20,12 @@ router.get("/",async(req,res)=>{
 router.get("/:id",async(req,res)=>{
     
     try{
-        const result= await db.query('SELECT * FROM users WHERE user_id = $1',[req.params.id]);
+        
+        const result= await Users.findAll({
+            where: {
+              user_id: req.params.id
+            }
+          });;
        // console.log(result);
         res.status(200).json(
             result
@@ -36,20 +39,31 @@ router.get("/:id",async(req,res)=>{
 router.post("/",async(req,res)=>{
     //console.log(req.body);
     try{
-        let user= await db.query('SELECT email FROM users WHERE email = $1',[req.body.email]);
-       // console.log(`user.rows[0].....${user.rows[0].email}`);
-        if (user.rows[0])  return res.status(400).send("User already registered");
+        let user= await Users.findAll({
+            where: {
+                email: req.body.email
+              }
+            })
+        if (user)  return res.status(400).send("User already registered");
        
        
         else{
         const salt = await bcrypt.genSalt(10);
         pass = await bcrypt.hash(req.body.password, salt);
-        user=await db.query('INSERT INTO users (email,password, user_name, user_status) values ($1,$2,$3,$4) returning *',[req.body.email,pass,req.body.user_name,req.body.user_status]);
+        const user = await Users.create({ email: req.body.email,password: pass, user_name: req.body.user_name, user_status: req.body.user_status});
+    
         
         console.log(user);
+
+        
+        const result= await Users.findAll({
+            where: {
+              email: req.body.email
+            }
+          })
         
         res.status(200).json(
-            user.rows[0]
+            result
            );}
     } catch(err){
         console.log(err);
@@ -63,11 +77,22 @@ router.put("/:id",async(req,res)=>{
      try{
         const salt = await bcrypt.genSalt(10);
         pass = await bcrypt.hash(req.body.password, salt);
-         const result=await db.query('UPDATE users set email= $1 , password=$2 , user_name=$3 , user_status=$4 WHERE user_id=$5 returning *', [req.body.email,pass,req.body.user_name,req.body.user_status,req.params.id]);
+        const result= await Users.update({ email: req.body.email, password: pass, user_name: req.body.user_name, user_status: req.body.user_status }, {
+            where: {
+                user_id: req.params.id
+            }
+          });
+         //const result=await db.query('UPDATE users set email= $1 , password=$2 , user_name=$3 , user_status=$4 WHERE user_id=$5 returning *', [req.body.email,pass,req.body.user_name,req.body.user_status,req.params.id]);
         // console.log(result);
-         res.status(200).json(
-             result.rows[0]
-             );
+        const updatedResult= await Users.findAll({
+            where: {
+                user_id: req.params.id
+            }
+          })
+        
+        res.status(200).json(
+            updatedResult
+           );
      } catch(err){
         // console.log(err);
      }
