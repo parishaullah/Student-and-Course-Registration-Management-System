@@ -49,10 +49,10 @@ const Users=require('../models/users');
  */
 router.post("/",async(req,res)=>{
         let user= await Users.findOne({ where: {  email: req.body.email } });
-        if (user!==null) return res.status(400).send('Invalid email.');
+        if (!user) return res.status(400).send('Invalid email or password.');
        
         const validPassword = await bcrypt.compare(req.body.password, user.password);
-        if (!validPassword) return res.status(400).send('Invalid password.');
+        if (!validPassword) return res.status(400).send('Invalid email or password.');
         let id=user.user_id
         const token = jwt.sign({id},'jwtPrivateKey');
         res.send(token);
