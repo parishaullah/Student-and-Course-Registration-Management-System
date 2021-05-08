@@ -1,7 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const db = require('../config/database'); 
-const Users=require('../models/users')
+const auth = require('../middleware/auth');
+const Users=require('../models/users');
 const bcrypt = require("bcrypt");
 
 //Get all users
@@ -42,7 +43,7 @@ router.get("/:id",async(req,res)=>{
 });
 
 //Create user
-router.post("/",async(req,res)=>{
+router.post("/",auth,async(req,res)=>{
     try{
         let exsistingUser= await Users.findOne({ where: {  email: req.body.email } });
         if (exsistingUser!==null)  return res.status(400).send("User already registered");
