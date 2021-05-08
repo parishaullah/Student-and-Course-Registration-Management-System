@@ -21,26 +21,17 @@ router.get("/",async(req,res)=>{
 router.get("/:id",async(req,res)=>{
     
     try{
-
-        let user= await Users.findAll({
-            where: {
-                user_id: req.params.id
-              }
-            })
-        if (user==+null)  return res.status(400).send("User does not exist!");
+  
+        let user= await Users.findOne({where: { user_id: req.params.id}});
+        if (!user)  return res.status(400).send("User does not exist!");
         
-        const result= await Users.findAll({
-            where: {
-              user_id: req.params.id
-            }
-          });;
         res.status(200).json(
-            result
+            user
            );
     } catch(err){
         console.log(err);
     }
-});
+  });
 
 //Create user
 router.post("/",auth,async(req,res)=>{
@@ -73,12 +64,8 @@ router.put("/:id",async(req,res)=>{
      
      try{
 
-        let user= await Users.findAll({
-            where: {
-                user_id: req.params.id
-              }
-            })
-        if (user==+null)  return res.status(400).send("User does not exist!");
+         let user= await Users.findOne({where: { user_id: req.params.id}});
+        if (!user)  return res.status(400).send("User does not exist!");
 
         const salt = await bcrypt.genSalt(10);
         pass = await bcrypt.hash(req.body.password, salt);
@@ -106,12 +93,8 @@ router.delete("/:id",async(req,res)=>{
     
     try{
 
-        let user= await Users.findAll({
-            where: {
-                user_id: req.params.id
-              }
-            })
-        if (user==+null)  return res.status(400).send("User does not exist!");
+        let user= await Users.findOne({where: { user_id: req.params.id}});
+        if (!user)  return res.status(400).send("User does not exist!");
 
         await Users.destroy({
             where: {

@@ -21,7 +21,24 @@ const router = express.Router();
  * @const
  */
 const Takes = require("../models/courseRegistration");
+const Students=require('../models//students');
 
+//Get particular user
+router.get("/:id",async(req,res)=>{
+    
+  try{
+
+      let student= await Students.findOne({where: { student_id: req.params.id}});
+      if (!student)  return res.status(400).send("Student does not exist!");
+      
+      res.status(200).json(
+          student.student_id,
+          student.email
+         );
+  } catch(err){
+      console.log(err);
+  }
+});
 
 /**
  * Route serving taken courses
