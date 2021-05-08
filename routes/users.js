@@ -44,7 +44,9 @@ router.get("/:id",async(req,res)=>{
 //Create user
 router.post("/",async(req,res)=>{
     try{
-        
+        let exsistingUser= await Users.findOne({ where: {  email: req.body.email } });
+        if (exsistingUser!==null)  return res.status(400).send("User already registered");
+
         const salt = await bcrypt.genSalt(10);
         pass = await bcrypt.hash(req.body.password, salt);
         const user = await Users.create({ email: req.body.email,password: pass, user_name: req.body.user_name, user_status: req.body.user_status});

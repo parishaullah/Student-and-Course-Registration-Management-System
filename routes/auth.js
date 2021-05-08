@@ -1,21 +1,61 @@
+/** Express router providing user related routes
+ * @module routes/auth
+ * @requires express
+ * @requires courseRegistartion
+ * @requires bcrypt
+ * @requires jsonwebtoken
+ */
+
+/**
+ * express module
+ * @const
+ */
 const express = require("express");
+/**
+ * router module
+ * @const
+ */
 const router = express.Router();
 require("dotenv").config();
 const db = require('../db'); 
+
+/**
+ * bcrypt module
+ * @const
+ */
 const bcrypt = require("bcrypt");
+
+/**
+ * jwt module
+ * @const
+ */
 const jwt = require("jsonwebtoken");
 
 
+/**
+ * users module
+ * @const
+ */
+const Users=require('../models/users');
+
+/**
+ * Route serving login 
+ * @name post/login
+ * @function
+ * @memberof module:routes/auth
+ * @inner
+ * @param {string} path - Express path
+ * @param
+ */
 router.post("/",async(req,res)=>{
-        let user= await db.query('SELECT email FROM users WHERE email = $1',[req.body.email]);
-        if (!user.rows[0]) return res.status(400).send('Invalid email.');
+        let user= await Users.findOne({ where: {  email: req.body.email } });
+        if (user!==null) return res.status(400).send('Invalid email.');
        
-        let pass= await db.query('SELECT password FROM users WHERE email = $1',[req.body.email]);
-        const validPassword = await bcrypt.compare(req.body.password, pass.rows[0].password);
-         if (!validPassword) return res.status(400).send('Invalid password.');
-         let id=user.rows[0].id
+        const validPassword = await bcrypt.compare(req.body.password, user.password);
+        if (!validPassword) return res.status(400).send('Invalid password.');
+        let id=user.user_id
         const token = jwt.sign({id},'jwtPrivateKey');
-         res.send(token);
+        res.send(token);
 });
 
 module.exports = router;
