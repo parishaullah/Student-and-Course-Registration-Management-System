@@ -32,8 +32,7 @@ router.get("/:id",async(req,res)=>{
       if (!student)  return res.status(400).send("Student does not exist!");
       
       res.status(200).json(
-          student.student_id,
-          student.email
+          student
          );
   } catch(err){
       console.log(err);
