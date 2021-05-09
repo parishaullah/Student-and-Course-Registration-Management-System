@@ -16,8 +16,7 @@ const express = require("express");
  * @const
  */
 const router = express.Router();
-require("dotenv").config();
-const db = require('../db'); 
+require("dotenv").config(); 
 
 /**
  * bcrypt module
