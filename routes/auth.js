@@ -44,7 +44,9 @@ const Users=require('../models/users');
  * @memberof module:routes/auth
  * @inner
  * @param {string} path - Express path
- * @param
+ * @param {object} user - One user obeject
+ * @param {boolean} validPassword - Valid password 
+ * @param {string} token - Store token
  */
 router.post("/",async(req,res)=>{
         let user= await Users.findOne({ where: {  email: req.body.email } });

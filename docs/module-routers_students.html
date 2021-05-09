@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Module: routes/auth</title>
+    <title>JSDoc: Module: routers/students</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Module: routes/auth</h1>
+    <h1 class="page-title">Module: routers/students</h1>
 
     
 
@@ -87,7 +87,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line1">line 1</a>
+        <a href="students.js.html">students.js</a>, <a href="students.js.html#line1">line 1</a>
     </li></ul></dd>
     
 
@@ -129,11 +129,7 @@
         <ul>
             <li>module:express</li>
         
-            <li>module:courseRegistartion</li>
-        
-            <li>module:bcrypt</li>
-        
-            <li>module:jsonwebtoken</li>
+            <li>module:Students</li>
         </ul>
     
 
@@ -147,68 +143,6 @@
 
     
         <h3 class="subsection-title">Members</h3>
-
-        
-            
-<h4 class="name" id="~bcrypt"><span class="type-signature">(inner, constant) </span>bcrypt<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>bcrypt module</p>
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line25">line 25</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
 
         
             
@@ -256,69 +190,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line13">line 13</a>
-    </li></ul></dd>
-    
-
-    
-
-    
-
-    
-</dl>
-
-
-
-
-
-
-        
-            
-<h4 class="name" id="~jwt"><span class="type-signature">(inner, constant) </span>jwt<span class="type-signature"></span></h4>
-
-
-
-
-<div class="description">
-    <p>jwt module</p>
-</div>
-
-
-
-
-
-
-
-<dl class="details">
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-
-    
-    <dt class="tag-source">Source:</dt>
-    <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line31">line 31</a>
+        <a href="students.js.html">students.js</a>, <a href="students.js.html#line11">line 11</a>
     </li></ul></dd>
     
 
@@ -380,7 +252,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line18">line 18</a>
+        <a href="students.js.html">students.js</a>, <a href="students.js.html#line17">line 17</a>
     </li></ul></dd>
     
 
@@ -398,13 +270,13 @@
 
         
             
-<h4 class="name" id="~Users"><span class="type-signature">(inner, constant) </span>Users<span class="type-signature"></span></h4>
+<h4 class="name" id="~Students"><span class="type-signature">(inner, constant) </span>Students<span class="type-signature"></span></h4>
 
 
 
 
 <div class="description">
-    <p>users module</p>
+    <p>Students module</p>
 </div>
 
 
@@ -442,7 +314,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line38">line 38</a>
+        <a href="students.js.html">students.js</a>, <a href="students.js.html#line23">line 23</a>
     </li></ul></dd>
     
 
@@ -470,7 +342,7 @@
     
 
     
-    <h4 class="name" id="~post/login"><span class="type-signature">(inner) </span>post/login<span class="signature">(path, user, validPassword, token)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~get/students"><span class="type-signature">(inner) </span>get/students<span class="signature">(path)</span><span class="type-signature"></span></h4>
     
 
     
@@ -478,7 +350,7 @@
 
 
 <div class="description">
-    <p>Route serving login</p>
+    <p>Route serving taken courses</p>
 </div>
 
 
@@ -537,15 +409,10 @@
 
         <tr>
             
-                <td class="name"><code>user</code></td>
+                <td class="name"><code></code></td>
             
 
             <td class="type">
-            
-                
-<span class="param-type">object</span>
-
-
             
             </td>
 
@@ -553,53 +420,7 @@
 
             
 
-            <td class="description last"><p>One user obeject</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>validPassword</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">boolean</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Valid password</p></td>
-        </tr>
-
-    
-
-        <tr>
-            
-                <td class="name"><code>token</code></td>
-            
-
-            <td class="type">
-            
-                
-<span class="param-type">string</span>
-
-
-            
-            </td>
-
-            
-
-            
-
-            <td class="description last"><p>Store token</p></td>
+            <td class="description last"></td>
         </tr>
 
     
@@ -640,7 +461,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="auth.js.html">auth.js</a>, <a href="auth.js.html#line40">line 40</a>
+        <a href="students.js.html">students.js</a>, <a href="students.js.html#line26">line 26</a>
     </li></ul></dd>
     
 

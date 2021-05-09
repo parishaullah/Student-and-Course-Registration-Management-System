@@ -21,23 +21,18 @@ const router = express.Router();
  * @const
  */
 const Takes = require("../models/courseRegistration");
-const Students=require('../models//students');
 
-//Get particular user
-router.get("/:id",async(req,res)=>{
-    
-  try{
+/**
+ * PassCourses module
+ * @const
+ */
+const PassedCourses = require("../models/passedCourses");
 
-      let student= await Students.findOne({where: { student_id: req.params.id}});
-      if (!student)  return res.status(400).send("Student does not exist!");
-      
-      res.status(200).json(
-          student
-         );
-  } catch(err){
-      console.log(err);
-  }
-});
+/**
+ * Takes module
+ * @const
+ */
+ const Prereqs = require("../models/prerequisite");
 
 /**
  * Route serving taken courses
@@ -46,18 +41,16 @@ router.get("/:id",async(req,res)=>{
  * @memberof module:routers/courseRegistration
  * @inner
  * @param {string} path - Express path
- * @param
+ * @param {object} take - taken Courses
+ * @param {object} result - taken all Courses
  */
 router.get("/:id",async(req,res)=>{
     
     try{
+      
 
-        let take= await Takes.findAll({
-            where: {
-                student_id: req.params.id
-              }
-            })
-        if (take==+null)  return res.status(400).send("Student does not exist!");
+        let take= await Takes.findAll({ where: {student_id: req.params.id}});
+        if (take!==null)  return res.status(400).send("Student did not take any course!");
         
         const result= await Takes.findAll({
             where: {
@@ -80,10 +73,25 @@ router.get("/:id",async(req,res)=>{
  * @memberof module:routers/courseRegistration
  * @inner
  * @param {string} path - Express path
- * @param
+ * @param {object} take - Choosen Course
+ * @param {object} result - newly Choosen Course
  */
 router.post("/",async(req,res)=>{
     try{
+      let hasPrereq=true;
+      let prereqs= await Prereqs.findAll({ where: {course_id:  req.body.course_id}});
+      let passedCourses= await PassedCourses.findAll({ where: {course_id:  req.body.course_id}});
+      prereqs.forEach( 
+        (preCourse) => { 
+          passedCourses.forEach( 
+            (passcourse) => { 
+              if (preCourse.course_id==passcourse.course_id) hasPrereq= true;
+              else hasPrereq= false;
+            }
+          );
+        }
+      );
+
         const take = await Takes.create({ student_id: req.body.student_id, course_id: req.body.course_id, section_id: req.body.section_id, course_updated_by_user_id: req.body.course_updated_by_user_id});
     
         console.log(take);

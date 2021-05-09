@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
     <meta charset="utf-8">
-    <title>JSDoc: Source: auth.js</title>
+    <title>JSDoc: Source: students.js</title>
 
     <script src="scripts/prettify/prettify.js"> </script>
     <script src="scripts/prettify/lang-css.js"> </script>
@@ -17,7 +17,7 @@
 
 <div id="main">
 
-    <h1 class="page-title">Source: auth.js</h1>
+    <h1 class="page-title">Source: students.js</h1>
 
     
 
@@ -27,64 +27,52 @@
     <section>
         <article>
             <pre class="prettyprint source linenums"><code>/** Express router providing user related routes
- * @module routes/auth
+ * @module routers/students
  * @requires express
- * @requires courseRegistartion
- * @requires bcrypt
- * @requires jsonwebtoken
+ * @requires Students
  */
 
 /**
  * express module
  * @const
  */
-const express = require("express");
-/**
- * router module
- * @const
- */
-const router = express.Router();
-require("dotenv").config(); 
+ const express = require("express");
 
-/**
- * bcrypt module
- * @const
- */
-const bcrypt = require("bcrypt");
-
-/**
- * jwt module
- * @const
- */
-const jwt = require("jsonwebtoken");
+ /**
+  * router module
+  * @const
+  */
+ const router = express.Router();
+ 
+ /**
+  * Students module
+  * @const
+  */
+const Students=require('../models/students');
 
 
 /**
- * users module
- * @const
- */
-const Users=require('../models/users');
-
-/**
- * Route serving login 
- * @name post/login
+ * Route serving taken courses
+ * @name get/students
  * @function
- * @memberof module:routes/auth
+ * @memberof module:routers/students
  * @inner
  * @param {string} path - Express path
- * @param {object} user - One user obeject
- * @param {boolean} validPassword - Valid password 
- * @param {string} token - Store token
+ * @param
  */
-router.post("/",async(req,res)=>{
-        let user= await Users.findOne({ where: {  email: req.body.email } });
-        if (!user) return res.status(400).send('Invalid email or password.');
-       
-        const validPassword = await bcrypt.compare(req.body.password, user.password);
-        if (!validPassword) return res.status(400).send('Invalid email or password.');
-        //let id=user.user_id
-        const token = jwt.sign({ id: user.user_id},'jwtPrivateKey');
-        res.send(token);
+router.get("/:id",async(req,res)=>{
+    
+  try{
+
+      let student= await Students.findOne({where: { student_id: req.params.id}});
+      if (!student)  return res.status(400).send("Student does not exist!");
+      
+      res.status(200).json(
+          student
+         );
+  } catch(err){
+      console.log(err);
+  }
 });
 
 module.exports = router;</code></pre>

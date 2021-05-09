@@ -208,6 +208,130 @@
 
         
             
+<h4 class="name" id="~PassedCourses"><span class="type-signature">(inner, constant) </span>PassedCourses<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>PassCourses module</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="courseRegistration.js.html">courseRegistration.js</a>, <a href="courseRegistration.js.html#line29">line 29</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
+<h4 class="name" id="~Prereqs"><span class="type-signature">(inner, constant) </span>Prereqs<span class="type-signature"></span></h4>
+
+
+
+
+<div class="description">
+    <p>Takes module</p>
+</div>
+
+
+
+
+
+
+
+<dl class="details">
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <dt class="tag-source">Source:</dt>
+    <dd class="tag-source"><ul class="dummy"><li>
+        <a href="courseRegistration.js.html">courseRegistration.js</a>, <a href="courseRegistration.js.html#line35">line 35</a>
+    </li></ul></dd>
+    
+
+    
+
+    
+
+    
+</dl>
+
+
+
+
+
+
+        
+            
 <h4 class="name" id="~router"><span class="type-signature">(inner, constant) </span>router<span class="type-signature"></span></h4>
 
 
@@ -342,7 +466,7 @@
     
 
     
-    <h4 class="name" id="~get/courseRegistration"><span class="type-signature">(inner) </span>get/courseRegistration<span class="signature">(path)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~get/courseRegistration"><span class="type-signature">(inner) </span>get/courseRegistration<span class="signature">(path, take, result)</span><span class="type-signature"></span></h4>
     
 
     
@@ -409,10 +533,15 @@
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>take</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
             
             </td>
 
@@ -420,7 +549,30 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>taken Courses</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>result</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>taken all Courses</p></td>
         </tr>
 
     
@@ -461,7 +613,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="courseRegistration.js.html">courseRegistration.js</a>, <a href="courseRegistration.js.html#line26">line 26</a>
+        <a href="courseRegistration.js.html">courseRegistration.js</a>, <a href="courseRegistration.js.html#line37">line 37</a>
     </li></ul></dd>
     
 
@@ -497,7 +649,7 @@
     
 
     
-    <h4 class="name" id="~post/courseRegistration"><span class="type-signature">(inner) </span>post/courseRegistration<span class="signature">(path)</span><span class="type-signature"></span></h4>
+    <h4 class="name" id="~post/courseRegistration"><span class="type-signature">(inner) </span>post/courseRegistration<span class="signature">(path, take, result)</span><span class="type-signature"></span></h4>
     
 
     
@@ -564,10 +716,15 @@
 
         <tr>
             
-                <td class="name"><code></code></td>
+                <td class="name"><code>take</code></td>
             
 
             <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
             
             </td>
 
@@ -575,7 +732,30 @@
 
             
 
-            <td class="description last"></td>
+            <td class="description last"><p>Choosen Course</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>result</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">object</span>
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>newly Choosen Course</p></td>
         </tr>
 
     
@@ -616,7 +796,7 @@
     
     <dt class="tag-source">Source:</dt>
     <dd class="tag-source"><ul class="dummy"><li>
-        <a href="courseRegistration.js.html">courseRegistration.js</a>, <a href="courseRegistration.js.html#line60">line 60</a>
+        <a href="courseRegistration.js.html">courseRegistration.js</a>, <a href="courseRegistration.js.html#line69">line 69</a>
     </li></ul></dd>
     
 
@@ -662,13 +842,13 @@
 </div>
 
 <nav>
-    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-routers_courseRegistration.html">routers/courseRegistration</a></li><li><a href="module-routes_auth.html">routes/auth</a></li></ul>
+    <h2><a href="index.html">Home</a></h2><h3>Modules</h3><ul><li><a href="module-routers_courseRegistration.html">routers/courseRegistration</a></li><li><a href="module-routers_students.html">routers/students</a></li><li><a href="module-routes_auth.html">routes/auth</a></li></ul>
 </nav>
 
 <br class="clear">
 
 <footer>
-    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sat May 08 2021 14:50:56 GMT+0600 (Bangladesh Standard Time)
+    Documentation generated by <a href="https://github.com/jsdoc/jsdoc">JSDoc 3.6.6</a> on Sun May 09 2021 14:50:53 GMT+0600 (Bangladesh Standard Time)
 </footer>
 
 <script> prettyPrint(); </script>
