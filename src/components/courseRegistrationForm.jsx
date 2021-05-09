@@ -1,12 +1,11 @@
 import React from "react";
 import Joi from "joi-browser";
 import Form from "./common/form";
-import { saveCourse } from './../services/courseService';
+import { saveCourse } from '../services/courseRegisterService';
 
 class StudentRegisterForm extends Form {
   state = {
     data: {student_id: "" , course_id: "" , section_id : "" , course_updated_by_user_id: ""},
-    //grade_level:[ {_id:1, name: 10},{_id:2, name: 11},{_id:3, name: 12}],
     courses:[ {_id : 1 , name: "CSE 323"}, {_id : 2 , name: "CSE 327"},{_id : 3 , name: "CSE 331"},{_id : 4 , name: "CSE445"},{_id : 5, name: "cse 499"}],
     setions:[ {_id : 1 , name: 1}, {_id : 2 , name: 2},{_id : 3 , name: 3},{_id : 4 , name: 4},{_id : 5, name: 5}],
     errors: {}

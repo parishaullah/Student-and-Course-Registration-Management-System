@@ -24,7 +24,7 @@ class Navbar extends Component {
               <div className="collapse navbar-collapse" id="navbarNavAltMarkup">
                 <div className="navbar-nav">
                   <NavLink className="nav-item nav-link"  to="/courses">Course </NavLink>
-                  <NavLink className="nav-item nav-link"to="/students">Student
+                  <NavLink className="nav-item nav-link"to="/registration">Registration
                   </NavLink>
                   <NavLink className="nav-item nav-link" to="/users">User
                   </NavLink>

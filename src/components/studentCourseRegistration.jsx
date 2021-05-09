@@ -1,14 +1,12 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-//import { toast } from "react-toastify";
 import StudentTable from "./studentTable";
 import Pagination from "./common/pagination";
 import { getStudents} from "../services/studentInfoService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 import SearchBox from "./common/searchBox";
-import Courses from "./course";
-import StudentRegisterForm from "./studentRegisterForm";
+import Courses from "./takenCourse";
+import StudentRegisterForm from "./courseRegistrationForm";
 
 class Student extends Component {
 

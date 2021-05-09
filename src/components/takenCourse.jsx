@@ -1,9 +1,7 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-//import { toast } from "react-toastify";
-import CourseTable from "./courseTable";
+import CourseTable from "./takenCourseTable";
 import Pagination from "./common/pagination";
-import {getCourses} from "../services/courseService";
+import {getCourses} from "../services/courseRegisterService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 import SearchBox from "./common/searchBox";
