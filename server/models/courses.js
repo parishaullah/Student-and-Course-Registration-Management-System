@@ -1,7 +1,7 @@
 const Sequelize = require('sequelize');
 const db = require('../config/database');
 
-const course = db.define('course', {
+const Courses = db.define('courses', {
     course_id: {
         type: Sequelize.STRING,
         primarykey: true,
@@ -24,4 +24,4 @@ const course = db.define('course', {
 });
 
 
-module.exports = course;
+module.exports = Courses;
