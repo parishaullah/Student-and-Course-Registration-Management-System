@@ -49,8 +49,8 @@ class Student extends Component {
       if (searchQuery)
         filtered = allStudents.filter(m =>
           m.student_id.toString().startsWith(searchQuery.toString())||
-          m.student_first_name.toLowerCase().startsWith(searchQuery.toLowerCase())||
-          m.student_last_name.toLowerCase().startsWith(searchQuery.toLowerCase())
+          m.student_name.toLowerCase().startsWith(searchQuery.toLowerCase())||
+          m.student_cgpa.toLowerCase().startsWith(searchQuery.toString())
         
         );
 
@@ -65,14 +65,7 @@ class Student extends Component {
 
       return (
         <div>
-          <Link
-            to="/students/new"
-            className="btn btn-dark"
-            style={{ marginTop: 20, marginBottom: 20 }}
-          >
-            Add New Student
-          </Link>
-          <p>Showing {totalCount} students in the database.</p>
+          <p>Showing {totalCount} students from the database.</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <StudentTable
             students={students}

@@ -46,8 +46,8 @@ class Course extends Component {
     let filtered = allCourses;
     if (searchQuery)
       filtered = allCourses.filter(m =>
-        m.course_id.toString().startsWith(searchQuery.toString())||
-        m.course_title.toLowerCase().startsWith(searchQuery.toLowerCase())
+        m.course_id.toLowerCase().startsWith(searchQuery.toLowerCase)||
+        m.section_id.toString().startsWith(searchQuery.toString())
       );
 
     const sorted = _.orderBy(filtered, [sortColumn.path], [sortColumn.order]);
@@ -61,13 +61,6 @@ class Course extends Component {
 
     return (
       <div>
-          <Link
-            to="/courses/new"
-            className="btn btn-dark"
-            style={{ marginTop: 20, marginBottom: 20 }}
-          >
-            Add New course
-          </Link>
           <p>Showing {totalCount} courses in the database.</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <CourseTable

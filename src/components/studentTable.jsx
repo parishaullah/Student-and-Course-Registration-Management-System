@@ -5,18 +5,17 @@ import Table from "./common/table";
 class StudentTable extends Component {
   columns = 
   [
-    {
+    /*{
       path: "p",
       label: "Action",
      content: student => <Link to={`/students/${student.student_id}`}> Edit </Link>
-    },
+    },*/
     {
-      path: "student_id",
-      label: "ID",
+      path: "student_id", label: "ID",
     },
-    { path: "student_first_name", label: "First Name" },
-    { path: "student_last_name", label: "Last Name" }, 
-    { path: "student_grade_level", label: "Grade Level" },
+    { path: "student_name", label: "Student Name" },
+    { path: "student_cgpa", label: "CGPA" }, 
+   /* { path: "student_grade_level", label: "Grade Level" },
     { path: "student_university_name", label: "University" },
     { path: "student_phone_number", label: "Phone No" },
     { path: "student_email", label: "Email" },
@@ -26,7 +25,7 @@ class StudentTable extends Component {
     { path: "student_country", label: "Country" },
     { path: "student_created_by_user_id", label: "Created by" },
     { path: "student_updated_by_user_id", label: "Updated by" },
-    { path: "last_update_time", label: "Update Time" },
+    { path: "last_update_time", label: "Update Time" },*/
 
   ];
 
