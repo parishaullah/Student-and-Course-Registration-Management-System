@@ -34,6 +34,32 @@ const PassedCourses = require("../models/passedCourses");
  */
  const Prereqs = require("../models/prerequisite");
 
+ /**
+ * Route serving taken courses
+ * @name get/courseRegistration
+ * @function
+ * @memberof module:routers/courseRegistration
+ * @inner
+ * @param {string} path - Express path
+ * @param {object} take - taken Courses
+ * @param {object} result - taken all Courses
+ */
+router.get("/",async(req,res)=>{
+    
+  try{
+    
+
+      let take= await Takes.findAll();
+      if (take==+null)  return res.status(400).send("Student does not exist!");
+    
+      res.status(200).json(
+          take
+         );
+  } catch(err){
+      console.log(err);
+  }
+});
+
 /**
  * Route serving taken courses
  * @name get/courseRegistration
@@ -50,7 +76,7 @@ router.get("/:id",async(req,res)=>{
       
 
         let take= await Takes.findAll({ where: {student_id: req.params.id}});
-        if (take!==null)  return res.status(400).send("Student did not take any course!");
+        if (take==+null)  return res.status(400).send("Student does not exist!");
         
         const result= await Takes.findAll({
             where: {

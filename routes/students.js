@@ -23,14 +23,26 @@
 const Students=require('../models/students');
 
 
+//Get all users
+router.get("/",async(req,res)=>{
+    
+    try{
+        const result= await Students.findAll();
+        console.log(result);
+        res.status(200).send(result);
+    } catch(err){
+       console.log(err);
+    }
+});
+
 /**
- * Route serving taken courses
+ * Route serving find student
  * @name get/students
  * @function
  * @memberof module:routers/students
  * @inner
  * @param {string} path - Express path
- * @param
+ * @param {object} student - perticular student
  */
 router.get("/:id",async(req,res)=>{
     
