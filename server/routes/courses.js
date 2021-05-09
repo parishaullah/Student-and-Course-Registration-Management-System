@@ -1,9 +1,23 @@
+/**
+ * express module
+ * @const
+ */
 const express = require('express');
+/**
+ * router module
+ * @const
+ */
 const router = express.Router();
-const db = require('../config/database');
 const Courses = require('../models/courses');
 
-//Get all courses
+/**
+ * Route for viewing all courses
+ * @name get/courses
+ * @function
+ * @memberof module:routes/courses
+ * @inner
+ * @param {string} path - Express path
+ */
 router.get('/', async (req, res) => {
     try {
         const result = await Courses.findAll();
@@ -27,7 +41,14 @@ router.get("/:course_id", async (req, res) => {
     }
 });
 
-//Create course
+/**
+ * Route for adding course
+ * @name post/course
+ * @function
+ * @memberof module:routers/courseRegistration
+ * @inner
+ * @param {string} path - Express path
+ */
 router.post("/", async (req, res) => {
     try {
         let exsistingCourse = await Courses.findOne({where: {course_id: req.body.course_id}});
