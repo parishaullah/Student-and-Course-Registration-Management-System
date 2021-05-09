@@ -7,6 +7,8 @@ import { getStudents} from "../services/studentInfoService";
 import { paginate } from "../utils/paginate";
 import _ from "lodash";
 import SearchBox from "./common/searchBox";
+import Courses from "./course";
+import StudentRegisterForm from "./studentRegisterForm";
 
 class Student extends Component {
 
@@ -58,6 +60,7 @@ class Student extends Component {
       const students = paginate(sorted, currentPage, pageSize);
       return { totalCount: filtered.length, data: students };
     };
+    
 
     render() {
       const { pageSize, currentPage, sortColumn, searchQuery } = this.state;
@@ -65,6 +68,9 @@ class Student extends Component {
 
       return (
         <div>
+          <h1 className="text-center text-dart"> Student Course Registration</h1> 
+             
+          <h3 > Student Information:</h3>
           <p>Showing {totalCount} students from the database.</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <StudentTable
@@ -78,6 +84,8 @@ class Student extends Component {
             currentPage={currentPage}
             onPageChange={this.handlePageChange}
           />
+          <Courses/>
+          <StudentRegisterForm/>
         </div>
       );
     }

@@ -61,6 +61,7 @@ class Course extends Component {
 
     return (
       <div>
+          <h3> Registered Courses: </h3>
           <p>Showing {totalCount} courses in the database.</p>
           <SearchBox value={searchQuery} onChange={this.handleSearch} />
           <CourseTable

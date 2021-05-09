@@ -14,6 +14,9 @@ export function getStudents() {
 export function getStudent(studentId) {
   return http.get(studentUrl(studentId));
 }
+export function getCourses() {
+  return http.get(apiEndpoint);
+}
 
 export function saveStudent(student) {
   //const {students}=student
