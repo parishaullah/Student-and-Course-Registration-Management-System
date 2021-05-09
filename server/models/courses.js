@@ -4,7 +4,7 @@ const db = require('../config/database');
 const Courses = db.define('courses', {
     course_id: {
         type: Sequelize.STRING,
-        primarykey: true,
+        primaryKey: true,
         allowNull: false
     },
     course_title: {

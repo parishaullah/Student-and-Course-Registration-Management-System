@@ -4,7 +4,7 @@ const db = require('../config/database');
 const Courses = require('../models/courses');
 
 //Get all courses
-router.get('/courses', async (req, res) => {
+router.get('/', async (req, res) => {
     try {
         const result = await Courses.findAll();
         console.log(result);
@@ -15,7 +15,7 @@ router.get('/courses', async (req, res) => {
 });
 
 //Get particular course
-router.get("/courses/:course_id", async (req, res) => {
+router.get("/:course_id", async (req, res) => {
     try {
         let course = await Courses.findOne({where: {course_id: req.params.course_id}});
         if (!course) return res.status(400).send("Course does not exist!");
@@ -28,10 +28,10 @@ router.get("/courses/:course_id", async (req, res) => {
 });
 
 //Create course
-router.post("/courses", async (req, res) => {
+router.post("/", async (req, res) => {
     try {
-        let exsistingCourse = await Courses.findOne({where: {course_id: req.params.course_id}});
-        if (exsistingCourse !== null) return res.status(400).send("User already registered");
+        let exsistingCourse = await Courses.findOne({where: {course_id: req.body.course_id}});
+        if (exsistingCourse !== null) return res.status(400).send("Course already registered");
 
         const course = await Courses.create({
             course_id: req.body.course_id,
@@ -57,7 +57,7 @@ router.post("/courses", async (req, res) => {
 });
 
 //Update course
-router.put("/courses/:course_id", async (req, res) => {
+router.put("/:course_id", async (req, res) => {
     try {
         let course = await Courses.findOne({where: {course_id: req.params.course_id}});
         if (!course) return res.status(400).send("Course does not exist!");
@@ -88,7 +88,7 @@ router.put("/courses/:course_id", async (req, res) => {
 });
 
 //Delete course
-router.delete("/courses/:course_id", async (req, res) => {
+router.delete("/:course_id", async (req, res) => {
     try {
         let course = await Courses.findOne({where: {course_id: req.params.course_id}});
         if (!course) return res.status(400).send("Course does not exist!");
