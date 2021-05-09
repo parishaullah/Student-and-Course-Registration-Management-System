@@ -38,8 +38,3 @@ export function saveCourse(course) {
     delete body.course_id;
     return http.post(apiEndpoint, body);
 }
-
-/*
-export function deleteMovie(movieId) {
-  return http.delete(studentUrl(movieId));
-}*/

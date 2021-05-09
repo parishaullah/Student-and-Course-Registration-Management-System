@@ -3,18 +3,24 @@
  * @const
  */
 const express = require('express');
+
 /**
  * router module
  * @const
  */
 const router = express.Router();
+
+/**
+ * courses module
+ * @const
+ */
 const Courses = require('../models/courses');
 
 /**
  * Route for viewing all courses
  * @name get/courses
  * @function
- * @memberof module:routes/courses
+ * @memberof module:routers/courses
  * @inner
  * @param {string} path - Express path
  */
@@ -28,7 +34,14 @@ router.get('/', async (req, res) => {
     }
 });
 
-//Get particular course
+/**
+ * Route for viewing a particular course
+ * @name get/courses
+ * @function
+ * @memberof module:routers/courses
+ * @inner
+ * @param {string} path - Express path
+ */
 router.get("/:course_id", async (req, res) => {
     try {
         let course = await Courses.findOne({where: {course_id: req.params.course_id}});
@@ -42,10 +55,10 @@ router.get("/:course_id", async (req, res) => {
 });
 
 /**
- * Route for adding course
- * @name post/course
+ * Route serving adding courses
+ * @name post/courses
  * @function
- * @memberof module:routers/courseRegistration
+ * @memberof module:routers/courses
  * @inner
  * @param {string} path - Express path
  */
@@ -67,7 +80,7 @@ router.post("/", async (req, res) => {
             where: {
                 course_id: req.body.course_id
             }
-        })
+        });
 
         res.status(200).json(
             result
@@ -77,7 +90,14 @@ router.post("/", async (req, res) => {
     }
 });
 
-//Update course
+/**
+ * Route serving course update
+ * @name put/courses
+ * @function
+ * @memberof module:routers/courses
+ * @inner
+ * @param {string} path - Express path
+ */
 router.put("/:course_id", async (req, res) => {
     try {
         let course = await Courses.findOne({where: {course_id: req.params.course_id}});
@@ -108,7 +128,14 @@ router.put("/:course_id", async (req, res) => {
     }
 });
 
-//Delete course
+/**
+ * Route serving course delete
+ * @name delete/courses
+ * @function
+ * @memberof module:routers/courses
+ * @inner
+ * @param {string} path - Express path
+ */
 router.delete("/:course_id", async (req, res) => {
     try {
         let course = await Courses.findOne({where: {course_id: req.params.course_id}});
