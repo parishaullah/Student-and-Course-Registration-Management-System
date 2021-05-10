@@ -3,8 +3,9 @@ import { apiUrl} from "../config.json";
 
 const apiEndpoint = apiUrl + "/courseregistrations";
 
-function courseUrl(id) {
-  return `${apiEndpoint}/${id}`;
+export function courseUrl(id) {
+  const url = "http://localhost:3000/courseregistrations/" + id;
+  return url;
 }
 
 export function getCourses() {

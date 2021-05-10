@@ -6,9 +6,9 @@ class Navbar extends Component {
     render() { 
         return ( 
             <React.Fragment>
-                 <nav className="navbar navbar-expand-lg navbar-light bg-light">
+                 <nav className="navbar navbar-dark bg-dark navbar-expand-md">
               <Link className="navbar-brand" to="/">
-                  Demo University
+                  North South University
               </Link>
               <button
                 className="navbar-toggler"
